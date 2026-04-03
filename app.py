@@ -41,10 +41,10 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Modeli Önbelleğe Al (Sitenin hızını artırır)
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("best_cow_model.h5")
+    # Güvenli modda (safe_mode=False) yükleyerek TFOpLambda hatasını aşmayı deniyoruz
+    return tf.keras.models.load_model("best_cow_model.h5", compile=False, safe_mode=False) 
 
 model = load_model()
 IMG_SIZE = 384
